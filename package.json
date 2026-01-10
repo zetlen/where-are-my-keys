@@ -35,11 +35,12 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "test": "node --import tsx --test test/**/*.test.ts",
+    "test": "node scripts/test-runner.js",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "glob": "^11.0.1",
     "tsup": "^8.5.1",
     "tsx": "^4.7.0",
     "typescript": "^5.0.0"
