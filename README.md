@@ -13,6 +13,7 @@ It scans:
 - **NPM** (`npm`): Checks `NPM_TOKEN`, `NODE_AUTH_TOKEN`, `npm` CLI, `.npmrc`.
 - **AWS** (`aws`): Checks `AWS_ACCESS_KEY_ID`, `aws` CLI, credentials file.
 - **GCP** (`gcp`): Checks `GOOGLE_APPLICATION_CREDENTIALS`, `gcloud` CLI, key files.
+- **OpenAI** (`openai`): Checks `OPENAI_API_KEY`, `.env` files.
 
 ## Installation
 
@@ -34,6 +35,9 @@ npx where-are-my-keys
 
 # Find NPM token
 npx where-are-my-keys npm
+
+# Find OpenAI key
+npx where-are-my-keys openai
 
 # Find AWS keys
 npx where-are-my-keys aws

@@ -57,4 +57,23 @@ describe('Strategies', () => {
       assert.strictEqual(result?.token, process.env.NPM_TOKEN);
     });
   });
+
+  describe('OpenAI Strategy', () => {
+    it('should find OPENAI_API_KEY', async () => {
+      process.env.OPENAI_API_KEY = 'sk-1234567890abcdef1234567890abcdef';
+      const result = await getToken('openai');
+      
+      assert.ok(result);
+      assert.strictEqual(result?.token, process.env.OPENAI_API_KEY);
+      assert.match(result?.source || '', /Environment Variable/);
+    });
+
+    it('should find sk-proj keys', async () => {
+      process.env.OPENAI_API_KEY = 'sk-proj-1234567890abcdef1234567890abcdef';
+      const result = await getToken('openai');
+      
+      assert.ok(result);
+      assert.strictEqual(result?.token, process.env.OPENAI_API_KEY);
+    });
+  });
 });
