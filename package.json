@@ -32,6 +32,9 @@
   "bin": {
     "where-are-my-keys": "./dist/cli.js"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

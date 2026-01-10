@@ -16,6 +16,8 @@ It scans:
 
 ## Installation
 
+Requires Node.js 20 or later.
+
 ```bash
 npm install -g where-are-my-keys
 # or
