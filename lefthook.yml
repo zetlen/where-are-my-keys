@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      glob: "*.{js,ts,cjs,mjs,json}"
+      run: npx @biomejs/biome check --write --no-errors-on-unmatched {staged_files} && git update-index --again
+
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: npx commitlint --edit {1}

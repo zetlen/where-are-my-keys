@@ -1,18 +1,17 @@
-import { glob } from 'glob';
-import { spawn } from 'child_process';
-import { fileURLToPath } from 'url';
+import { spawn } from "node:child_process";
+import { glob } from "glob";
 
-const files = await glob('test/**/*.test.ts');
+const files = await glob("test/**/*.test.ts");
 
 if (files.length === 0) {
-  console.error('No test files found!');
-  process.exit(1);
+	console.error("No test files found!");
+	process.exit(1);
 }
 
-const args = ['--import', 'tsx', '--test', ...files];
+const args = ["--import", "tsx", "--test", ...files];
 
-const child = spawn('node', args, { stdio: 'inherit' });
+const child = spawn("node", args, { stdio: "inherit" });
 
-child.on('close', (code) => {
-  process.exit(code ?? 1);
+child.on("close", (code) => {
+	process.exit(code ?? 1);
 });
