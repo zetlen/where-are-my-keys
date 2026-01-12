@@ -17,7 +17,7 @@ export function createShellTool(
 			});
 			const token = transform(stdout.trim());
 			if (validator(token)) {
-				return { token, source: `Shell Command (${command})` };
+				return { message: `Found via shell command: ${command}`, command };
 			}
 		} catch (_e) {
 			// ignore command failures

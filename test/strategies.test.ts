@@ -19,8 +19,8 @@ describe("Strategies", () => {
 			const result = await getToken("github");
 
 			assert.ok(result);
-			assert.strictEqual(result?.token, process.env.GITHUB_TOKEN);
-			assert.match(result?.source || "", /Environment Variable/);
+			assert.strictEqual(result?.envVar, "GITHUB_TOKEN");
+			assert.match(result?.message || "", /Found in environment variable/);
 		});
 
 		it("should return null when no token found", async () => {
@@ -43,7 +43,7 @@ describe("Strategies", () => {
 			const result = await getToken("github");
 			// It might be null or found via shell.
 			if (result) {
-				console.log(`Note: Found GitHub token via ${result.source}`);
+				console.log(`Note: Found GitHub token via ${result.message}`);
 			}
 		});
 	});
@@ -54,7 +54,7 @@ describe("Strategies", () => {
 			const result = await getToken("npm");
 
 			assert.ok(result);
-			assert.strictEqual(result?.token, process.env.NPM_TOKEN);
+			assert.strictEqual(result?.envVar, "NPM_TOKEN");
 		});
 	});
 

@@ -22,8 +22,11 @@ describe("Tools", () => {
 
 			const result = await tool();
 			assert.ok(result);
-			assert.strictEqual(result.token, "valid-token");
-			assert.strictEqual(result.source, "Environment Variable (TEST_TOKEN)");
+			assert.strictEqual(result.envVar, "TEST_TOKEN");
+			assert.strictEqual(
+				result.message,
+				"Found in environment variable: TEST_TOKEN",
+			);
 		});
 
 		it("should return null if key exists but invalid", async () => {
@@ -52,10 +55,10 @@ describe("Tools", () => {
 
 			const result = await tool();
 			assert.ok(result);
-			assert.strictEqual(result.token, "secret-value");
+			assert.strictEqual(result.envVar, "SOME_RANDOM_KEY");
 			assert.strictEqual(
-				result.source,
-				"Heuristic Scan (Found in SOME_RANDOM_KEY)",
+				result.message,
+				"Found via heuristic scan in environment variable: SOME_RANDOM_KEY",
 			);
 		});
 

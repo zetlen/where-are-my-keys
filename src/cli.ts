@@ -15,12 +15,16 @@ import { getToken, strategies } from "./index";
 	try {
 		const result = await getToken(mode);
 
-		if (result?.token) {
-			console.log(`✅ Found via: ${result.source}`);
-			const len = result.token.length;
-			const start = result.token.substring(0, 4);
-			const end = len > 8 ? result.token.substring(len - 4) : "";
-			console.log(`🔑 Token: ${start}...${end}`);
+		if (result) {
+			if (result.found === false) {
+				console.log(`🚫 ${result.message}`);
+			} else {
+				console.log(`✅ ${result.message}`);
+			}
+
+			if (result.envVar) console.log(`   Variable: ${result.envVar}`);
+			if (result.file) console.log(`   File: ${result.file}`);
+			if (result.command) console.log(`   Command: ${result.command}`);
 		} else {
 			console.error(`❌ No ${mode} credentials found.`);
 			process.exit(1);

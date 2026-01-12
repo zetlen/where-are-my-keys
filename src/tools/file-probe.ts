@@ -27,7 +27,7 @@ export function createFileProbeTool(
 						value = value.trim().replace(/^['"]|['"]$/g, "");
 
 						if (validator(value)) {
-							return { token: value, source: `File (${file})` };
+							return { message: `Found in file: ${file}`, file };
 						}
 					}
 				}

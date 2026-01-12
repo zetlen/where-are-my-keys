@@ -11,8 +11,8 @@ export function createEnvHeuristicTool(
 			if (ignoreSet.has(key)) continue;
 			if (typeof val === "string" && validator(val)) {
 				return {
-					token: val.trim(),
-					source: `Heuristic Scan (Found in ${key})`,
+					message: `Found via heuristic scan in environment variable: ${key}`,
+					envVar: key,
 				};
 			}
 		}

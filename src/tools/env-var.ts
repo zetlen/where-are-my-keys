@@ -8,7 +8,10 @@ export function createEnvVarTool(
 		for (const key of keys) {
 			const val = process.env[key];
 			if (val && validator(val)) {
-				return { token: val.trim(), source: `Environment Variable (${key})` };
+				return {
+					message: `Found in environment variable: ${key}`,
+					envVar: key,
+				};
 			}
 		}
 		return null;
