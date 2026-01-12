@@ -81,6 +81,48 @@ if (result) {
 }
 ```
 
+## TODO: Providers We'd Love to Add
+
+**AI/ML Platforms:**
+- Hugging Face (`HUGGINGFACE_TOKEN`, `HF_TOKEN`)
+- Cohere (`COHERE_API_KEY`)
+- Replicate (`REPLICATE_API_TOKEN`)
+- Mistral (`MISTRAL_API_KEY`)
+- Groq (`GROQ_API_KEY`)
+- Together AI (`TOGETHER_API_KEY`)
+
+**Cloud Providers:**
+- Azure (`AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, `az` CLI)
+- DigitalOcean (`DIGITALOCEAN_TOKEN`, `doctl` CLI)
+- Cloudflare (`CLOUDFLARE_API_TOKEN`, `wrangler` CLI)
+- Vercel (`VERCEL_TOKEN`, `vercel` CLI)
+- Netlify (`NETLIFY_AUTH_TOKEN`, `netlify` CLI)
+
+**Developer Tools:**
+- Stripe (`STRIPE_SECRET_KEY`, `STRIPE_API_KEY`)
+- Twilio (`TWILIO_AUTH_TOKEN`, `TWILIO_API_KEY`)
+- SendGrid (`SENDGRID_API_KEY`)
+- Slack (`SLACK_TOKEN`, `SLACK_BOT_TOKEN`)
+- Discord (`DISCORD_TOKEN`, `DISCORD_BOT_TOKEN`)
+- Linear (`LINEAR_API_KEY`)
+- Sentry (`SENTRY_AUTH_TOKEN`, `sentry-cli`)
+- Datadog (`DD_API_KEY`, `DATADOG_API_KEY`)
+
+**Databases:**
+- MongoDB Atlas (`MONGODB_URI`, `mongosh`)
+- PlanetScale (`PLANETSCALE_TOKEN`, `pscale` CLI)
+- Supabase (`SUPABASE_KEY`, `supabase` CLI)
+- Neon (`NEON_API_KEY`, `neonctl`)
+- Redis Cloud (`REDIS_URL`, `REDIS_PASSWORD`)
+- Turso (`TURSO_AUTH_TOKEN`, `turso` CLI)
+
+**Version Control & CI:**
+- GitLab (`GITLAB_TOKEN`, `glab` CLI)
+- Bitbucket (`BITBUCKET_TOKEN`)
+- CircleCI (`CIRCLECI_TOKEN`, `circleci` CLI)
+
+PRs welcome!
+
 ## Development
 
 ```bash
