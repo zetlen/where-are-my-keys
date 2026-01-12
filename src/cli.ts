@@ -6,34 +6,29 @@ import { getToken, strategies } from "./index";
 
 	if (!strategies[mode]) {
 		console.error(
-			`❌ Invalid provider "${mode}". Try: ${Object.keys(strategies).join(", ")}`,
+			`Invalid provider "${mode}". Try: ${Object.keys(strategies).join(", ")}`,
 		);
 		process.exit(1);
 	}
 
-	console.log(`🔎 Running strategy: ${mode.toUpperCase()}`);
 	try {
 		const result = await getToken(mode);
 
 		if (result) {
-			if (result.found === false) {
-				console.log(`🚫 ${result.message}`);
-			} else {
-				console.log(`✅ ${result.message}`);
-			}
+			console.log(result.message);
 
-			if (result.envVar) console.log(`   Variable: ${result.envVar}`);
-			if (result.file) console.log(`   File: ${result.file}`);
-			if (result.command) console.log(`   Command: ${result.command}`);
+			if (result.envVar) console.log(`  Variable: ${result.envVar}`);
+			if (result.file) console.log(`  File: ${result.file}`);
+			if (result.command) console.log(`  Command: ${result.command}`);
 		} else {
-			console.error(`❌ No ${mode} credentials found.`);
+			console.error(`No ${mode} credentials found.`);
 			process.exit(1);
 		}
 	} catch (error: unknown) {
 		if (error instanceof Error) {
-			console.error(`❌ Error: ${error.message}`);
+			console.error(`Error: ${error.message}`);
 		} else {
-			console.error("❌ An unknown error occurred");
+			console.error("An unknown error occurred");
 		}
 		process.exit(1);
 	}
