@@ -2,6 +2,17 @@ import assert from "node:assert";
 import { execSync } from "node:child_process";
 import { after, beforeEach, describe, it } from "node:test";
 
+// Must clear sensitive environment vars so CI detection doesn't strip metadata
+const sensitiveEnvVars = [
+	"CI",
+	"GITHUB_ACTIONS",
+	"GITLAB_CI",
+	"CIRCLECI",
+	"TRAVIS",
+	"BUILDKITE",
+	"NODE_ENV",
+];
+
 describe("CLI", () => {
 	const originalEnv = { ...process.env };
 
@@ -14,10 +25,16 @@ describe("CLI", () => {
 	});
 
 	const runCli = (args: string, env?: Record<string, string>) => {
+		// Build a clean env without CI variables
+		const cleanEnv = { ...process.env };
+		for (const v of sensitiveEnvVars) {
+			delete cleanEnv[v];
+		}
+
 		try {
 			const result = execSync(`npx tsx src/cli.ts ${args}`, {
 				encoding: "utf-8",
-				env: { ...process.env, ...env },
+				env: { ...cleanEnv, ...env },
 			});
 			return { output: result, exitCode: 0 };
 		} catch (error: unknown) {
