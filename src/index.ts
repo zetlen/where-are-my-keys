@@ -31,32 +31,21 @@ export async function getToken(
 	return { found: false, message: `Could not find ${type} secret.` };
 }
 
-/**
- * Taunts displayed when a secret is found but we're in a sensitive environment
- * (CI, production) where revealing the location would be a security risk.
- * These messages confirm the secret exists without helping attackers find it.
- */
 const taunts = [
-	"It's around here somewhere.",
-	"Get real, I'm not telling you more than that.",
-	"Nice try, threat actor.",
+	"It's around here somewhere",
+	"Get real, I'm not telling you more than that",
+	"Nice try, threat actor",
 	"Or maybe it's lbh-guvax-guvf-erirnyf-frperg-xrlf-va-frafvgvir-raivebazragf-lbh-pna-rng-zl-fubegf",
 	"┐(￣～￣)┌",
-	"Exfiltrate deez nulls.",
-	"Have you tried looking under the couch cushions?",
-	"I found it! Just kidding.",
-	"Your threat model called. It's embarrassed.",
-	"Imagine mass-assigning your way out of this one.",
-	"L + ratio + no secrets for you.",
-	"This isn't the credential you're looking for. 👋",
-	"Error: insufficient vibes.",
-	"Go fish.",
-	"Skill issue.",
-	"The secret is stored next to your reading comprehension.",
-	"404 Trust Not Found.",
-	"Maybe the real tokens were the friends we made along the way.",
+	"Exfiltrate deez nulls",
+	"Have you tried looking under the couch cushions",
+	"Your threat model called. It's crying",
+	"Imagine mass-assigning your way out of this one",
+	"L + ratio",
+	"Go fish",
+	"Skill issue",
+	"Maybe the real auth tokens were the friends we made along the way",
 	"Bruh.",
-	"Ask nicely next time. Actually, don't.",
 	"ಠ_ಠ",
 ];
 

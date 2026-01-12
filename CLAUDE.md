@@ -37,12 +37,6 @@ Each tool is a factory function that returns an async `Tool` function. Tools ret
 
 `getToken(provider)` in `src/index.ts` runs the strategy's tools in order until one succeeds.
 
-### Sensitive Environment Protection
-
-When running in CI or production (`CI` env var set, or `NODE_ENV=production`), the tool confirms whether a secret exists but **refuses to reveal its location**. This prevents malicious workflows from exfiltrating credential locations.
-
-Instead of location details, it returns a randomly-selected taunt mocking the would-be attacker. The taunts are intentionally sarcastic and dismissive - this is a feature, not a bug. When adding new taunts, match the existing tone: casual mockery, internet culture references, and security in-jokes are all fair game.
-
 ### Adding a New Provider
 
 1. Create `src/strategies/newprovider.ts` with a `Strategy` object
