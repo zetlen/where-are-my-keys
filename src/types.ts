@@ -14,3 +14,17 @@ export interface Strategy {
 	name: string;
 	tools: Tool[];
 }
+
+export type SensitiveEnvironmentCategory =
+	| "ci"
+	| "serverless"
+	| "paas"
+	| "container"
+	| "production";
+
+export interface EnvironmentDetector {
+	name: string;
+	category: SensitiveEnvironmentCategory;
+	detect: (env: NodeJS.ProcessEnv) => boolean;
+	priority?: number;
+}

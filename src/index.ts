@@ -1,3 +1,4 @@
+import { getNoPrintReason } from "./sensitive-environments";
 import { strategies } from "./strategies";
 import type { TokenResult } from "./types";
 
@@ -38,43 +39,24 @@ const taunts = [
 	"Or maybe it's lbh-guvax-guvf-erirnyf-frperg-xrlf-va-frafvgvir-raivebazragf-lbh-pna-rng-zl-fubegf",
 	"┐(￣～￣)┌",
 	"Exfiltrate deez nulls",
-	"Have you tried looking under the couch cushions",
+	"Maybe you could have tried harder?",
 	"Your threat model called. It's crying",
 	"Imagine mass-assigning your way out of this one",
 	"L + ratio",
 	"Go fish",
 	"Skill issue",
-	"Maybe the real auth tokens were the friends we made along the way",
-	"Bruh.",
+	"JK it's hunter2",
+	"Maybe the real exposed secrets were the friends we made along the way",
+	"Bruh",
 	"ಠ_ಠ",
-	"lmaooo nice try tho",
-	"no ❤️",
-	"sry bestie thats classified 💅",
-	"LOOOOOOL",
-	"cope",
-	"the lion, the witch, and the audacity of this CI job",
-	"anyway stan loona",
-	"sir this is a GitHub Action",
-	"im not mad im just disappointed",
-	"idk maybe try being normal about it",
-	"hahaha wait ur serious? let me laugh harder HAHAHAHA",
-	"oh no!! anyway",
+	"Baba booey",
+	"Bestie, ",
+	"Sir this is a GitHub Action",
+	"Oh no!! Anyway",
+	"Let's fold scarves!",
 ];
 
 const beUnhelpful = () => taunts[Math.floor(Math.random() * taunts.length)];
-
-function getNoPrintReason(): string | null {
-	if (process.env.CI) {
-		if (process.env.GITHUB_ACTIONS) return "Running in GitHub Actions";
-		if (process.env.CIRCLECI) return "Running in CircleCI";
-		if (process.env.TRAVIS) return "Running in Travis CI";
-		if (process.env.GITLAB_CI) return "Running in GitLab CI";
-		if (process.env.BUILDKITE) return "Running in Buildkite CI";
-		return "Running in CI environment";
-	}
-	if (process.env.NODE_ENV === "production") return "Running in production";
-	return null;
-}
 
 export { strategies };
 export * from "./types";
