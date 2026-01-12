@@ -1,6 +1,9 @@
 export interface TokenResult {
-  token: string;
-  source: string;
+	message: string;
+	envVar?: string;
+	file?: string;
+	command?: string;
+	found?: boolean;
 }
 
 export type TokenValidator = (value: string) => boolean;
@@ -8,6 +11,20 @@ export type TokenValidator = (value: string) => boolean;
 export type Tool = () => Promise<TokenResult | null>;
 
 export interface Strategy {
-  name: string;
-  tools: Tool[];
+	name: string;
+	tools: Tool[];
+}
+
+export type SensitiveEnvironmentCategory =
+	| "ci"
+	| "serverless"
+	| "paas"
+	| "container"
+	| "production";
+
+export interface EnvironmentDetector {
+	name: string;
+	category: SensitiveEnvironmentCategory;
+	detect: (env: NodeJS.ProcessEnv) => boolean;
+	priority?: number;
 }

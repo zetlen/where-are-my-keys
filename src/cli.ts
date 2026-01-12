@@ -1,30 +1,40 @@
 #!/usr/bin/env node
-import { getToken, strategies } from './index';
+import { getToken, strategies } from "./index";
 
 (async () => {
-  const mode = process.argv[2] || 'github';
-  
-  if (!strategies[mode]) {
-    console.error(`❌ Invalid provider "${mode}". Try: ${Object.keys(strategies).join(', ')}`);
-    process.exit(1);
-  }
+	const mode = process.argv[2] || "github";
 
-  console.log(`🔎 Running strategy: ${mode.toUpperCase()}`);
-  try {
-    const result = await getToken(mode);
+	if (!strategies[mode]) {
+		console.error(
+			`❌ Invalid provider "${mode}". Try: ${Object.keys(strategies).join(", ")}`,
+		);
+		process.exit(1);
+	}
 
-    if (result && result.token) {
-      console.log(`✅ Found via: ${result.source}`);
-      const len = result.token.length;
-      const start = result.token.substring(0, 4);
-      const end = len > 8 ? result.token.substring(len - 4) : '';
-      console.log(`🔑 Token: ${start}...${end}`);
-    } else {
-      console.error(`❌ No ${mode} credentials found.`);
-      process.exit(1);
-    }
-  } catch (error: any) {
-    console.error(`❌ Error: ${error.message}`);
-    process.exit(1);
-  }
+	console.log(`🔎 Running strategy: ${mode.toUpperCase()}`);
+	try {
+		const result = await getToken(mode);
+
+		if (result) {
+			if (result.found === false) {
+				console.log(`🚫 ${result.message}`);
+			} else {
+				console.log(`✅ ${result.message}`);
+			}
+
+			if (result.envVar) console.log(`   Variable: ${result.envVar}`);
+			if (result.file) console.log(`   File: ${result.file}`);
+			if (result.command) console.log(`   Command: ${result.command}`);
+		} else {
+			console.error(`❌ No ${mode} credentials found.`);
+			process.exit(1);
+		}
+	} catch (error: unknown) {
+		if (error instanceof Error) {
+			console.error(`❌ Error: ${error.message}`);
+		} else {
+			console.error("❌ An unknown error occurred");
+		}
+		process.exit(1);
+	}
 })();
