@@ -2,11 +2,25 @@ import assert from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
 import { getToken } from "../src/index";
 
+// Must clear sensitive environment vars so CI detection doesn't strip metadata
+const sensitiveEnvVars = [
+	"CI",
+	"GITHUB_ACTIONS",
+	"GITLAB_CI",
+	"CIRCLECI",
+	"TRAVIS",
+	"BUILDKITE",
+	"NODE_ENV",
+];
+
 describe("Strategies", () => {
 	const originalEnv = { ...process.env };
 
 	beforeEach(() => {
 		process.env = { ...originalEnv };
+		for (const v of sensitiveEnvVars) {
+			delete process.env[v];
+		}
 	});
 
 	after(() => {
