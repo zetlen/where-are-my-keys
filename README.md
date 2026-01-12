@@ -16,7 +16,8 @@ BUT WAIT, THERE'S MORE! It scans:
 - **AWS** (`aws`): Checks `AWS_ACCESS_KEY_ID`, `aws` CLI, credentials file.
 - **GCP** (`gcp`): Checks `GOOGLE_APPLICATION_CREDENTIALS`, `gcloud` CLI, key files.
 - **OpenAI** (`openai`): Checks `OPENAI_API_KEY`, `.env` files.
-- **Anthropic** (`anthropic`): Checks `ANTHROPIC_API_KEY`, `.env` files.
+- **Anthropic** (`anthropic`): Checks `ANTHROPIC_API_KEY`, `CLAUDE_API_KEY`, `.env` files.
+- **Gemini** (`gemini`): Checks `GEMINI_API_KEY`, `GOOGLE_API_KEY`, `GOOGLE_GENERATIVE_AI_API_KEY`, `.env` files.
 
 ## Installation
 
