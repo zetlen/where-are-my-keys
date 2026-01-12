@@ -1,11 +1,13 @@
 # Where Are My Keys?
 
-A utility for finding auth tokens and keys in your environment.
+ARE YOU TIRED of digging through your system trying to find that ONE API key you KNOW is there somewhere?! Have you ever spent TWENTY MINUTES grepping through dotfiles like some kind of ANIMAL?!
 
-It scans:
-- Environment variables (known names and heuristics)
-- Shell CLI tools (e.g., `gh auth token`, `npm config get`)
-- Configuration files (e.g., `.env`, `.npmrc`, `.aws/credentials`)
+WELL STOP RIGHT THERE, FRIEND! **Where Are My Keys** is the INCREDIBLE utility that finds your auth tokens and API keys INSTANTLY! It searches your environment variables! It checks your CLI tools! It even digs through your config files! ALL WITH ONE SIMPLE COMMAND!
+
+BUT WAIT, THERE'S MORE! It scans:
+- Environment variables (known names AND smart heuristics!)
+- Shell CLI tools (like `gh auth token` and `npm config get`!)
+- Configuration files (`.env`, `.npmrc`, `.aws/credentials`, you name it!)
 
 ## Supported Providers
 
@@ -14,6 +16,7 @@ It scans:
 - **AWS** (`aws`): Checks `AWS_ACCESS_KEY_ID`, `aws` CLI, credentials file.
 - **GCP** (`gcp`): Checks `GOOGLE_APPLICATION_CREDENTIALS`, `gcloud` CLI, key files.
 - **OpenAI** (`openai`): Checks `OPENAI_API_KEY`, `.env` files.
+- **Anthropic** (`anthropic`): Checks `ANTHROPIC_API_KEY`, `.env` files.
 
 ## Installation
 

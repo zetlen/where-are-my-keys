@@ -90,4 +90,25 @@ describe("Strategies", () => {
 			assert.strictEqual(result?.envVar, "OPENAI_API_KEY");
 		});
 	});
+
+	describe("Anthropic Strategy", () => {
+		it("should find ANTHROPIC_API_KEY", async () => {
+			process.env.ANTHROPIC_API_KEY =
+				"sk-ant-api03-1234567890abcdef1234567890abcdef";
+			const result = await getToken("anthropic");
+
+			assert.ok(result);
+			assert.strictEqual(result?.envVar, "ANTHROPIC_API_KEY");
+			assert.match(result?.message || "", /Found in environment variable/);
+		});
+
+		it("should find CLAUDE_API_KEY", async () => {
+			process.env.CLAUDE_API_KEY =
+				"sk-ant-api03-1234567890abcdef1234567890abcdef";
+			const result = await getToken("anthropic");
+
+			assert.ok(result);
+			assert.strictEqual(result?.envVar, "CLAUDE_API_KEY");
+		});
+	});
 });

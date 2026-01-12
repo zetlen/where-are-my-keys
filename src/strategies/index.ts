@@ -1,4 +1,5 @@
 import type { Strategy } from "../types";
+import { anthropicStrategy } from "./anthropic";
 import { awsStrategy } from "./aws";
 import { gcpStrategy } from "./gcp";
 import { githubStrategy } from "./github";
@@ -11,4 +12,5 @@ export const strategies: Record<string, Strategy> = {
 	aws: awsStrategy,
 	gcp: gcpStrategy,
 	openai: openaiStrategy,
+	anthropic: anthropicStrategy,
 };
