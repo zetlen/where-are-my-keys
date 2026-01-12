@@ -2,7 +2,14 @@
 import { getToken, strategies } from "./index";
 
 (async () => {
-	const mode = process.argv[2] || "github";
+	const mode = process.argv[2];
+
+	if (!mode) {
+		console.error(
+			`Usage: where-are-my-keys <provider>\nProviders: ${Object.keys(strategies).join(", ")}`,
+		);
+		process.exit(1);
+	}
 
 	if (!strategies[mode]) {
 		console.error(
