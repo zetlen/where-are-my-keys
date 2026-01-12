@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.3](https://github.com/zetlen/where-are-my-keys/compare/v0.0.2...v0.0.3) (2026-01-12)
+
+
+### Features
+
+* add Anthropic strategy and rewrite README intro ([#5](https://github.com/zetlen/where-are-my-keys/issues/5)) ([513a8d0](https://github.com/zetlen/where-are-my-keys/commit/513a8d02269bc5453fe78d8b3270088b1de3d3b3))
+
 ## 0.0.2 (2026-01-12)
 
 
