@@ -58,23 +58,22 @@ describe("Strategies", () => {
 		});
 	});
 
-   describe('OpenAI Strategy', () => {
-    it('should find OPENAI_API_KEY', async () => {
-      process.env.OPENAI_API_KEY = 'sk-1234567890abcdef1234567890abcdef';
-      const result = await getToken('openai');
-      
-      assert.ok(result);
-      assert.strictEqual(result?.token, process.env.OPENAI_API_KEY);
-      assert.match(result?.source || '', /Environment Variable/);
-    });
+	describe("OpenAI Strategy", () => {
+		it("should find OPENAI_API_KEY", async () => {
+			process.env.OPENAI_API_KEY = "sk-1234567890abcdef1234567890abcdef";
+			const result = await getToken("openai");
 
-    it('should find sk-proj keys', async () => {
-      process.env.OPENAI_API_KEY = 'sk-proj-1234567890abcdef1234567890abcdef';
-      const result = await getToken('openai');
-      
-      assert.ok(result);
-      assert.strictEqual(result?.token, process.env.OPENAI_API_KEY);
-    });
-  });
+			assert.ok(result);
+			assert.strictEqual(result?.envVar, "OPENAI_API_KEY");
+			assert.match(result?.message || "", /Found in environment variable/);
+		});
 
+		it("should find sk-proj keys", async () => {
+			process.env.OPENAI_API_KEY = "sk-proj-1234567890abcdef1234567890abcdef";
+			const result = await getToken("openai");
+
+			assert.ok(result);
+			assert.strictEqual(result?.envVar, "OPENAI_API_KEY");
+		});
+	});
 });
