@@ -34,8 +34,8 @@ npx where-are-my-keys [provider]
 ### CLI
 
 ```bash
-# Find GitHub token (default)
-npx where-are-my-keys
+# Find GitHub token
+npx where-are-my-keys github
 
 # Find NPM token
 npx where-are-my-keys npm
@@ -45,6 +45,23 @@ npx where-are-my-keys openai
 
 # Find AWS keys
 npx where-are-my-keys aws
+
+# Output as JSON (for scripting)
+npx where-are-my-keys github --json
+```
+
+#### JSON Output
+
+Use the `--json` flag to get machine-readable output:
+
+```json
+{
+  "found": true,
+  "provider": "github",
+  "envVar": "GITHUB_TOKEN",
+  "file": null,
+  "command": null
+}
 ```
 
 ### Programmatic Usage
@@ -55,8 +72,10 @@ import { getToken } from 'where-are-my-keys';
 const result = await getToken('github');
 
 if (result) {
-  console.log(`Token: ${result.token}`);
-  console.log(`Source: ${result.source}`);
+  console.log(`Found: ${result.message}`);
+  if (result.envVar) console.log(`Variable: ${result.envVar}`);
+  if (result.file) console.log(`File: ${result.file}`);
+  if (result.command) console.log(`Command: ${result.command}`);
 } else {
   console.log('No token found');
 }
