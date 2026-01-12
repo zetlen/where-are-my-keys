@@ -2,11 +2,14 @@
 import { getToken, strategies } from "./index";
 
 (async () => {
-	const mode = process.argv[2];
+	const args = process.argv.slice(2);
+	const jsonFlag = args.includes("--json");
+	const positionalArgs = args.filter((arg) => !arg.startsWith("--"));
+	const mode = positionalArgs[0];
 
 	if (!mode) {
 		console.error(
-			`Usage: where-are-my-keys <provider>\nProviders: ${Object.keys(strategies).join(", ")}`,
+			`Usage: where-are-my-keys <provider> [--json]\nProviders: ${Object.keys(strategies).join(", ")}`,
 		);
 		process.exit(1);
 	}
@@ -21,15 +24,29 @@ import { getToken, strategies } from "./index";
 	try {
 		const result = await getToken(mode);
 
-		if (result) {
-			console.log(result.message);
-
-			if (result.envVar) console.log(`  Variable: ${result.envVar}`);
-			if (result.file) console.log(`  File: ${result.file}`);
-			if (result.command) console.log(`  Command: ${result.command}`);
+		if (jsonFlag) {
+			const output = result
+				? {
+						found: true,
+						provider: mode,
+						envVar: result.envVar ?? null,
+						file: result.file ?? null,
+						command: result.command ?? null,
+					}
+				: { found: false, provider: mode };
+			console.log(JSON.stringify(output, null, 2));
+			if (!result) process.exit(1);
 		} else {
-			console.error(`No ${mode} credentials found.`);
-			process.exit(1);
+			if (result) {
+				console.log(result.message);
+
+				if (result.envVar) console.log(`  Variable: ${result.envVar}`);
+				if (result.file) console.log(`  File: ${result.file}`);
+				if (result.command) console.log(`  Command: ${result.command}`);
+			} else {
+				console.error(`No ${mode} credentials found.`);
+				process.exit(1);
+			}
 		}
 	} catch (error: unknown) {
 		if (error instanceof Error) {
