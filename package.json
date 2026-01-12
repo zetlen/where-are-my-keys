@@ -1,6 +1,6 @@
 {
 	"name": "where-are-my-keys",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Utility for finding auth tokens and keys in your environment",
 	"keywords": [
 		"tokens",

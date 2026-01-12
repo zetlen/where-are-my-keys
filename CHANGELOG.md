@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/zetlen/where-are-my-keys/compare/v0.0.3...v0.0.4) (2026-01-12)
+
+
+### Features
+
+* add Gemini strategy for Google AI API keys ([#7](https://github.com/zetlen/where-are-my-keys/issues/7)) ([9d0d065](https://github.com/zetlen/where-are-my-keys/commit/9d0d06556458a186198ce4e0caa5200ed0f58018))
+
+
+### Bug Fixes
+
+* require provider argument in CLI ([161c2cc](https://github.com/zetlen/where-are-my-keys/commit/161c2cc6384909caea3bd2655b7ccd649ecdf8f6))
+
 ## [0.0.3](https://github.com/zetlen/where-are-my-keys/compare/v0.0.2...v0.0.3) (2026-01-12)
 
 
