@@ -111,4 +111,23 @@ describe("Strategies", () => {
 			assert.strictEqual(result?.envVar, "CLAUDE_API_KEY");
 		});
 	});
+
+	describe("Gemini Strategy", () => {
+		it("should find GEMINI_API_KEY", async () => {
+			process.env.GEMINI_API_KEY = "AIzaSyA1234567890abcdefghijklmnopqrstuv";
+			const result = await getToken("gemini");
+
+			assert.ok(result);
+			assert.strictEqual(result?.envVar, "GEMINI_API_KEY");
+			assert.match(result?.message || "", /Found in environment variable/);
+		});
+
+		it("should find GOOGLE_API_KEY", async () => {
+			process.env.GOOGLE_API_KEY = "AIzaSyA1234567890abcdefghijklmnopqrstuv";
+			const result = await getToken("gemini");
+
+			assert.ok(result);
+			assert.strictEqual(result?.envVar, "GOOGLE_API_KEY");
+		});
+	});
 });
