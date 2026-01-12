@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.0](https://github.com/zetlen/where-are-my-keys/compare/v0.0.4...v0.1.0) (2026-01-12)
+
+
+### Features
+
+* add --json flag for machine-readable output ([#8](https://github.com/zetlen/where-are-my-keys/issues/8)) ([714c301](https://github.com/zetlen/where-are-my-keys/commit/714c301c8ba57d454c1da06ed610ce91ba776930))
+
 ## [0.0.4](https://github.com/zetlen/where-are-my-keys/compare/v0.0.3...v0.0.4) (2026-01-12)
 
 
