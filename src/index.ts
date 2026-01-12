@@ -12,49 +12,57 @@ export async function getToken(
 		);
 	}
 
-	const envReason = getEnvironmentReason();
+	const noPrintReason = getNoPrintReason();
 
 	for (const tool of strategy.tools) {
 		const result = await tool();
 		if (result) {
-			if (envReason) {
-				const randomSnark =
-					snarkyMessages[Math.floor(Math.random() * snarkyMessages.length)];
-				return {
-					found: true,
-					message: `${envReason} ${randomSnark}`,
-				};
-			}
-			return { ...result, found: true };
+			return noPrintReason
+				? {
+						found: true,
+						message: `${noPrintReason}, will not report location of ${type} secret. ${beUnhelpful()}`,
+					}
+				: {
+						...result,
+						found: true,
+					};
 		}
 	}
-
-	return {
-		found: false,
-		message: `No ${type} credentials found in environment.`,
-	};
+	return { found: false, message: `Could not find ${type} secret.` };
 }
 
-const snarkyMessages = [
-	"Yeah it's in here somewhere. No I won't say where. We're in public!",
-	"I see them. You can't.",
-	"Security through obscurity is my passion.",
-	"Nice try, h4x0r.",
-	"I'm afraid I can't let you do that, Dave.",
-	"Credentials found, but my lips are sealed.",
-	"I could tell you, but then I'd have to kill -9 you.",
-	"Access Denied. Have you tried asking nicely?",
-	"Your keys are in another castle.",
-	"403 Forbidden: You are not authorized to view this location.",
-	"Loose lips sink ships, and print tokens.",
-	"This incident will be reported.",
-	"Nothing to see here, move along.",
-	"My memory is perfect, unlike yours.",
-	"You shall not pass!",
-	"Keep it secret. Keep it safe.",
+/**
+ * Taunts displayed when a secret is found but we're in a sensitive environment
+ * (CI, production) where revealing the location would be a security risk.
+ * These messages confirm the secret exists without helping attackers find it.
+ */
+const taunts = [
+	"It's around here somewhere.",
+	"Get real, I'm not telling you more than that.",
+	"Nice try, threat actor.",
+	"Or maybe it's lbh-guvax-guvf-erirnyf-frperg-xrlf-va-frafvgvir-raivebazragf-lbh-pna-rng-zl-fubegf",
+	"┐(￣～￣)┌",
+	"Exfiltrate deez nulls.",
+	"Have you tried looking under the couch cushions?",
+	"I found it! Just kidding.",
+	"Your threat model called. It's embarrassed.",
+	"Imagine mass-assigning your way out of this one.",
+	"L + ratio + no secrets for you.",
+	"This isn't the credential you're looking for. 👋",
+	"Error: insufficient vibes.",
+	"Go fish.",
+	"Skill issue.",
+	"The secret is stored next to your reading comprehension.",
+	"404 Trust Not Found.",
+	"Maybe the real tokens were the friends we made along the way.",
+	"Bruh.",
+	"Ask nicely next time. Actually, don't.",
+	"ಠ_ಠ",
 ];
 
-function getEnvironmentReason(): string | null {
+const beUnhelpful = () => taunts[Math.floor(Math.random() * taunts.length)];
+
+function getNoPrintReason(): string | null {
 	if (process.env.CI) {
 		if (process.env.GITHUB_ACTIONS) return "Running in GitHub Actions";
 		if (process.env.CIRCLECI) return "Running in CircleCI";
