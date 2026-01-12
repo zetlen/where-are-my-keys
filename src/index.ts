@@ -47,6 +47,18 @@ const taunts = [
 	"Maybe the real auth tokens were the friends we made along the way",
 	"Bruh.",
 	"ಠ_ಠ",
+	"lmaooo nice try tho",
+	"no ❤️",
+	"sry bestie thats classified 💅",
+	"LOOOOOOL",
+	"cope",
+	"the lion, the witch, and the audacity of this CI job",
+	"anyway stan loona",
+	"sir this is a GitHub Action",
+	"im not mad im just disappointed",
+	"idk maybe try being normal about it",
+	"hahaha wait ur serious? let me laugh harder HAHAHAHA",
+	"oh no!! anyway",
 ];
 
 const beUnhelpful = () => taunts[Math.floor(Math.random() * taunts.length)];
