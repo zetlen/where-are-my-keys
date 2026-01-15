@@ -21,12 +21,12 @@ function parseDotenv(content: string): Map<string, string> {
 		const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
 		if (!match) continue;
 
+		const [, key, rawValue] = match;
+		let value = rawValue.trim();
+
 		// Remove surrounding quotes
-		if (value.startsWith('"') && value.endsWith('"')) {
-			value = value.slice(1, -1);
-		} else if (value.startsWith("'") && value.endsWith("'")) {
-			value = value.slice(1, -1);
-		}
+		if (
+			(value.startsWith('"') && value.endsWith('"')) ||
 			(value.startsWith("'") && value.endsWith("'"))
 		) {
 			value = value.slice(1, -1);
