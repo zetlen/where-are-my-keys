@@ -1,3 +1,4 @@
+import { createDotenvProbeTool } from "../tools/dotenv-probe";
 import { createEnvHeuristicTool } from "../tools/env-heuristic";
 import { createEnvVarTool } from "../tools/env-var";
 import { createFileProbeTool } from "../tools/file-probe";
@@ -15,12 +16,13 @@ export const gcpStrategy: Strategy = {
 	name: "GCP",
 	tools: [
 		createEnvVarTool(commonVars, isGcp),
-		createShellTool("gcloud auth print-access-token", isGcp),
 		createEnvHeuristicTool(isGcp, commonVars),
+		createShellTool("gcloud auth print-access-token", isGcp),
 		createFileProbeTool(
 			["key.json", "service-account.json", ".env"],
 			/^\s*(?:GOOGLE_CREDENTIALS)\s*=\s*(.*)$/,
 			isGcp,
 		),
+		createDotenvProbeTool(isGcp),
 	],
 };

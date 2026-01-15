@@ -1,3 +1,4 @@
+import { createDotenvProbeTool } from "../tools/dotenv-probe";
 import { createEnvHeuristicTool } from "../tools/env-heuristic";
 import { createEnvVarTool } from "../tools/env-var";
 import { createFileProbeTool } from "../tools/file-probe";
@@ -18,5 +19,6 @@ export const anthropicStrategy: Strategy = {
 			/^\s*(?:ANTHROPIC_API_KEY|CLAUDE_API_KEY)\s*=\s*(.*)$/,
 			isAnthropic,
 		),
+		createDotenvProbeTool(isAnthropic),
 	],
 };
