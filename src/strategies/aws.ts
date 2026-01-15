@@ -1,3 +1,4 @@
+import { createDotenvProbeTool } from "../tools/dotenv-probe";
 import { createEnvHeuristicTool } from "../tools/env-heuristic";
 import { createEnvVarTool } from "../tools/env-var";
 import { createFileProbeTool } from "../tools/file-probe";
@@ -11,12 +12,13 @@ export const awsStrategy: Strategy = {
 	name: "AWS",
 	tools: [
 		createEnvVarTool(commonVars, isAws),
-		createShellTool("aws configure get aws_access_key_id", isAws),
 		createEnvHeuristicTool(isAws, commonVars),
+		createShellTool("aws configure get aws_access_key_id", isAws),
 		createFileProbeTool(
 			[".env", ".aws/credentials"],
 			/^\s*(?:aws_access_key_id|AWS_ACCESS_KEY_ID)\s*=\s*(.*)$/,
 			isAws,
 		),
+		createDotenvProbeTool(isAws),
 	],
 };

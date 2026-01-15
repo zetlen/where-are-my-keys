@@ -1,3 +1,4 @@
+import { createDotenvProbeTool } from "../tools/dotenv-probe";
 import { createEnvHeuristicTool } from "../tools/env-heuristic";
 import { createEnvVarTool } from "../tools/env-var";
 import { createFileProbeTool } from "../tools/file-probe";
@@ -22,5 +23,6 @@ export const geminiStrategy: Strategy = {
 			/^\s*(?:GEMINI_API_KEY|GOOGLE_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)\s*=\s*(.*)$/,
 			isGemini,
 		),
+		createDotenvProbeTool(isGemini),
 	],
 };

@@ -1,3 +1,4 @@
+import { createDotenvProbeTool } from "../tools/dotenv-probe";
 import { createEnvHeuristicTool } from "../tools/env-heuristic";
 import { createEnvVarTool } from "../tools/env-var";
 import { createFileProbeTool } from "../tools/file-probe";
@@ -19,5 +20,6 @@ export const openaiStrategy: Strategy = {
 			/^\s*(?:OPENAI_API_KEY|OPENAI_API_SECRET)\s*=\s*(.*)$/,
 			isOpenAi,
 		),
+		createDotenvProbeTool(isOpenAi),
 	],
 };

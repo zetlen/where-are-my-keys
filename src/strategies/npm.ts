@@ -1,3 +1,4 @@
+import { createDotenvProbeTool } from "../tools/dotenv-probe";
 import { createEnvHeuristicTool } from "../tools/env-heuristic";
 import { createEnvVarTool } from "../tools/env-var";
 import { createFileProbeTool } from "../tools/file-probe";
@@ -14,12 +15,13 @@ export const npmStrategy: Strategy = {
 	name: "NPM",
 	tools: [
 		createEnvVarTool(commonVars, isNpm),
-		createShellTool("npm config get //registry.npmjs.org/:_authToken", isNpm),
 		createEnvHeuristicTool(isNpm, commonVars),
+		createShellTool("npm config get //registry.npmjs.org/:_authToken", isNpm),
 		createFileProbeTool(
 			[".npmrc", ".env"],
 			/(?:_authToken|NPM_TOKEN|NODE_AUTH_TOKEN)\s*=\s*(.*)$/,
 			isNpm,
 		),
+		createDotenvProbeTool(isNpm),
 	],
 };
