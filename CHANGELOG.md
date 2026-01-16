@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.1](https://github.com/zetlen/where-are-my-keys/compare/v0.1.0...v0.1.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* improve env var detection and add dotenv file scanning ([#12](https://github.com/zetlen/where-are-my-keys/issues/12)) ([35885cd](https://github.com/zetlen/where-are-my-keys/commit/35885cd3cf6bac5b7dd5cb5031ee6da3a6a25a31)), closes [#11](https://github.com/zetlen/where-are-my-keys/issues/11) [#10](https://github.com/zetlen/where-are-my-keys/issues/10)
+
 ## [0.1.0](https://github.com/zetlen/where-are-my-keys/compare/v0.0.4...v0.1.0) (2026-01-12)
 
 
